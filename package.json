@@ -1,0 +1,24 @@
+{
+  "name": "eco",
+  "description": "E-Commerce site",
+  "author": "Team Bread",
+  "main": "src/server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/iidgg/eco.git"
+  },
+  "bugs": {
+    "url": "https://github.com/iidgg/eco/issues"
+  },
+  "dependencies": {
+    "bcrypt": "^6.0.0",
+    "dotenv": "^16.5.0",
+    "ejs": "^3.1.10",
+    "express": "^5.1.0",
+    "mongoose": "^8.14.3",
+    "morgan": "^1.10.0"
+  }
+}
