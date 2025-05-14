@@ -11,6 +11,11 @@ mongoose.connection.on('connected', () => {
 
 app.use(require('morgan')('dev'))
 
+// Controllers
+const authCtrl = require('controllers/auth.js')
+
+app.use('/auth', authCtrl)
+
 app.listen(process.env.PORT, (err) => {
   if (err) throw err
   console.log(`Listening on port ${process.env.PORT}`)
