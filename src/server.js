@@ -30,6 +30,7 @@ app.use(require('morgan')('dev'))
 
 // Controllers
 app.use('/auth', require('./controllers/auth.js'))
+app.use('/@me', require('./controllers/@me.js'))
 
 app.get('/', (req, res) => {
   res.render('home.ejs')
