@@ -1,5 +1,5 @@
 const mongoose = require('mongoose')
-const schema = mongoose.schema({
+const schema = mongoose.Schema({
   product_id: {
     type: mongoose.Schema.Types.ObjectId,
     ref: 'Product',

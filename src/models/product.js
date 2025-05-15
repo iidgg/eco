@@ -1,5 +1,5 @@
 const mongoose = require('mongoose')
-const schema = new mongoose.schema({
+const schema = new mongoose.Schema({
   title: { type: String, required: true },
   desc: String,
   shortDesc: { type: String, required: true },
