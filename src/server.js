@@ -12,9 +12,13 @@ mongoose.connection.on('connected', () => {
 app.use(require('morgan')('dev'))
 
 // Controllers
-const authCtrl = require('controllers/auth.js')
+const authCtrl = require('./controllers/auth.js')
 
 app.use('/auth', authCtrl)
+
+app.get('/', (req, res) => {
+  res.send('<h1>eco</h1>')
+})
 
 app.listen(process.env.PORT, (err) => {
   if (err) throw err
