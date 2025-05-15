@@ -46,6 +46,11 @@ router.post('/signin', async (req, res) => {
     username: userInDatabase.username,
     _id: userInDatabase._id
   }
+
+  if (req.query.r) {
+    return res.redirect(decodeURIComponent(req.query.r))
+  }
+
   res.redirect('/')
 })
 
