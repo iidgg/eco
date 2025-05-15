@@ -1,6 +1,7 @@
 const express = require('express')
 const router = express.Router()
 const bcrypt = require('bcrypt')
+const validator = require('validator')
 const User = require('../models/user')
 
 router.get('/signup', (req, res) => {
@@ -20,6 +21,31 @@ router.post('/signup', async (req, res) => {
   const hashedPassword = bcrypt.hashSync(req.body.password, 10)
   req.body.password = hashedPassword
   const user = await User.create(req.body)
+  res.redirect('/')
+})
+
+router.get('/signin', (req, res) => {
+  res.render('auth/signin.ejs')
+})
+
+router.post('/signin', async (req, res) => {
+  let userInDatabase
+  if (validator.isEmail(req.body.usernameOrEmail)) {
+    userInDatabase = await User.findOne({ email: req.body.userEmail })
+  } else {
+    userInDatabase = await User.findOne({ username: req.body.usernameOrEmail })
+  }
+  if (!userInDatabase) {
+    res.send('<h1>Wrong user information</h1>')
+  }
+  if (!bcrypt.compareSync(req.body.password, userInDatabase.password)) {
+    res.send('<h1>Wrong user information</h1>')
+  }
+
+  req.session.user = {
+    username: userInDatabase.username,
+    _id: userInDatabase._id
+  }
   res.redirect('/')
 })
 
