@@ -13,11 +13,12 @@ const schema = new mongoose.Schema({
     ref: 'User',
     required: true
   },
-  categoryId: {
-    type: mongoose.Schema.Types.ObjectId,
-    ref: 'Category',
-    required: true
-  }
+  categories: [
+    {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: 'Category'
+    }
+  ]
 })
 
 const Product = mongoose.model('Product', schema)
