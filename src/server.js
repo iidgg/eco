@@ -1,11 +1,18 @@
+require('dotenv').config()
+if (!process.env.SESSION_SECRET) {
+  console.error('MUST Provide a SESSION_SECRET environment')
+  process.exit(1)
+}
+
 const mongoose = require('mongoose')
 const express = require('express')
+const session = require('express-session')
+
 const app = express()
 
-const session = require('express-session')
-require('dotenv').config()
 app.use(require('method-override')('_method'))
 app.use(express.urlencoded({ extended: false }))
+
 app.use(
   session({
     secret: process.env.SESSION_SECRET,
@@ -13,6 +20,7 @@ app.use(
     saveUninitialized: true
   })
 )
+
 mongoose.connect(process.env.MONGODB_URI)
 mongoose.connection.on('connected', () => {
   console.log(`Connected to MongoDB ${mongoose.connection.name}.`)
@@ -21,12 +29,10 @@ mongoose.connection.on('connected', () => {
 app.use(require('morgan')('dev'))
 
 // Controllers
-const authCtrl = require('./controllers/auth.js')
-
-app.use('/auth', authCtrl)
+app.use('/auth', require('./controllers/auth.js'))
 
 app.get('/', (req, res) => {
-  res.send('<h1>eco</h1>')
+  res.render('home.ejs')
 })
 
 app.listen(process.env.PORT, (err) => {

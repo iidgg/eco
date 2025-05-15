@@ -1,20 +1,23 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>eco Sign-In</title>
-  </head>
-  <body>
-    <form action="/auth/signin" method="POST">
-      <label for="usernameOrEmail">Usernmae or Email</label>
-      <input type="text" name="usernameOrEmail" id="usernameOrEmail" />
-      <br />
 
-      <label for="password">Password:</label>
-      <input type="password" name="password" id="password" />
-      <br />
-      <button type="submit">Signin</button>
-    </form>
-  </body>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>eco Sign-In</title>
+</head>
+
+<body>
+  <form action="/auth/signin" method="POST">
+    <label for="usernameOrEmail">Username or Email</label>
+    <input type="text" name="usernameOrEmail" id="usernameOrEmail" />
+    <br />
+
+    <label for="password">Password:</label>
+    <input type="password" name="password" id="password" />
+    <br />
+    <button type="submit">Signin</button>
+  </form>
+</body>
+
 </html>

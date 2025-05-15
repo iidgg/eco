@@ -31,15 +31,15 @@ router.get('/signin', (req, res) => {
 router.post('/signin', async (req, res) => {
   let userInDatabase
   if (validator.isEmail(req.body.usernameOrEmail)) {
-    userInDatabase = await User.findOne({ email: req.body.userEmail })
+    userInDatabase = await User.findOne({ email: req.body.usernameOrEmail })
   } else {
     userInDatabase = await User.findOne({ username: req.body.usernameOrEmail })
   }
   if (!userInDatabase) {
-    res.send('<h1>Wrong user information</h1>')
+    return res.send('<h1>Wrong user information</h1>')
   }
   if (!bcrypt.compareSync(req.body.password, userInDatabase.password)) {
-    res.send('<h1>Wrong user information</h1>')
+    return res.send('<h1>Wrong user information</h1>')
   }
 
   req.session.user = {
