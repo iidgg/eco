@@ -3,11 +3,11 @@ const router = express.Router()
 const bcrypt = require('bcrypt')
 const User = require('../models/user')
 
-router.get('/sign-up', (req, res) => {
-  res.render('auth/sign-up.ejs')
+router.get('/signup', (req, res) => {
+  res.render('auth/signup.ejs')
 })
 
-router.post('/sign-up', async (req, res) => {
+router.post('/signup', async (req, res) => {
   const userInDatabase = await User.findOne({ username: req.body.username })
   if (userInDatabase) {
     return res.send('<h1>Username already taken</h1>')
