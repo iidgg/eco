@@ -3,6 +3,8 @@ const express = require('express')
 const app = express()
 
 require('dotenv').config()
+app.use(require('method-override')('_method'))
+app.use(express.urlencoded({ extended: false }))
 
 mongoose.connect(process.env.MONGODB_URI)
 mongoose.connection.on('connected', () => {
