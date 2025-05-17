@@ -10,5 +10,8 @@
     <div class="product-price"><%= product.price %></div>
     <div class="product-quantity"><%= product.quantity %></div>
     <div class="product-desription"><%= product.shortDesc %></div>
+    <% if (user) { %>
+    <a href="/products/<%= product._id %>/edit">Edit Product</a>
+    <%}%>
   </body>
 </html>
