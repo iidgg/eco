@@ -11,15 +11,19 @@ router.get('/', async (req, res) => {
   res.render('products/index.ejs', { products: allProducts })
 })
 
-router.use(protected)
-router.get('/new', (req, res) => {
+router.get('/new', protected, (req, res) => {
   res.render('products/new.ejs')
 })
 
-router.post('/new', async (req, res) => {
+router.post('/new', protected, async (req, res) => {
   req.body.userId = req.session.user._id
   await Product.create(req.body)
   res.redirect('/')
+})
+
+router.get('/:productId', async (req, res) => {
+  const foundProduct = await Product.findById(req.params.productId)
+  res.render('products/show.ejs', { product: foundProduct })
 })
 
 module.exports = router
