@@ -6,6 +6,11 @@ const Product = require('../models/product')
 const Category = require('../models/category')
 const session = require('express-session')
 
+router.get('/', async (req, res) => {
+  const allProducts = await Product.find()
+  res.render('products/index.ejs', { products: allProducts })
+})
+
 router.use(protected)
 router.get('/new', (req, res) => {
   res.render('products/new.ejs')
