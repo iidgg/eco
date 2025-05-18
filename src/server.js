@@ -8,10 +8,15 @@ const mongoose = require('mongoose')
 const express = require('express')
 const session = require('express-session')
 const MongoStore = require('connect-mongo')
+const ejsLayouts = require('express-ejs-layouts')
 
 const app = express()
 
-app.use('/static/avt', express.static('uploads/avt/'))
+app.set('view engine', 'ejs')
+app.use(ejsLayouts)
+
+app.use('/static/avatars', express.static('uploads/avatars/'))
+app.use('/assets', express.static('assets'))
 
 app.use(require('method-override')('_method'))
 app.use(express.urlencoded({ extended: false }))
@@ -31,6 +36,11 @@ mongoose.connection.on('connected', () => {
 })
 
 app.use(require('morgan')('dev'))
+
+app.use((req, res, next) => {
+  res.locals.user = req.session.user ?? null
+  next()
+})
 
 // Controllers
 app.use('/auth', require('./controllers/auth.js'))

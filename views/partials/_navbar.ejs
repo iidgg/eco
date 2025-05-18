@@ -1,0 +1,10 @@
+<nav>
+  <a class="user-nav" href="/@me">
+    <% if (user) { %>
+    <span>Hello, <%= user.firstName %></span>
+    <%- include('_avatar.ejs', { user, size: '6rem' }) %>
+    <% } else { %>
+    <a href="/auth/signin">Sign in</a>
+    <% } %>
+  </a>
+</nav>

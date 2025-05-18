@@ -1,0 +1,11 @@
+<span class="avatar"
+  <% if (typeof size !== 'undefined') { %> style="height: <%= size %>; width: <%= size %>;" <% } %>
+>
+  <img
+  <% if (user.avatar) { %>
+    src="/static/avatars/<%= user.avatar %>"
+  <% } else { %>
+    src="/assets/default_avatar.jpg"
+  <% } %>
+  >
+</span>
