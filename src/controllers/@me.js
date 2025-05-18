@@ -3,6 +3,7 @@ const upload = require('multer')({ dest: 'uploads/avatars/' })
 
 const protected = require('../middleware/protected')
 const User = require('../models/user')
+const { updateSession } = require('../utils')
 
 router.use(protected)
 
@@ -21,8 +22,11 @@ router.get('/', async (req, res) => {
 })
 
 router.put('/', upload.single('avatar'), async (req, res) => {
-  req.body.avatar = req.file.filename
-  await User.findByIdAndUpdate(req.session.user._id, req.body)
+  const updated = req.body
+  updated.avatar = req.file.filename
+
+  await User.findByIdAndUpdate(req.session.user._id, updated)
+  await updateSession(req, { user: updated })
   res.redirect('/@me')
 })
 

@@ -3,6 +3,7 @@ const router = express.Router()
 const bcrypt = require('bcrypt')
 const validator = require('validator')
 const User = require('../models/user')
+const { updateSession } = require('../utils')
 
 router.get('/signup', (req, res) => {
   res.render('auth/signup.ejs')
@@ -42,10 +43,7 @@ router.post('/signin', async (req, res) => {
     return res.send('<h1>Wrong user information</h1>')
   }
 
-  req.session.user = {
-    username: userInDatabase.username,
-    _id: userInDatabase._id
-  }
+  await updateSession(req, { user: userInDatabase })
 
   if (req.query.r) {
     return res.redirect(decodeURIComponent(req.query.r))
