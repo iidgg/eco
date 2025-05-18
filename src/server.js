@@ -10,6 +10,8 @@ const session = require('express-session')
 
 const app = express()
 
+app.use('/static/avt', express.static('uploads/avt/'))
+
 app.use(require('method-override')('_method'))
 app.use(express.urlencoded({ extended: false }))
 

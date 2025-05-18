@@ -1,5 +1,7 @@
 .DS_STORE
 
+uploads/
+
 # Logs
 logs
 *.log

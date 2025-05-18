@@ -1,4 +1,6 @@
 const router = require('express').Router()
+const upload = require('multer')({ dest: 'uploads/avt/' })
+
 const protected = require('../middleware/protected')
 const User = require('../models/user')
 
@@ -13,11 +15,13 @@ router.get('/', async (req, res) => {
     email: user.email,
     tel: user.tel,
     about: user.about,
+    avatar: user.avatar,
     commercial: user.commercial
   })
 })
 
-router.put('/', async (req, res) => {
+router.put('/', upload.single('avatar'), async (req, res) => {
+  req.body.avatar = req.file.filename
   await User.findByIdAndUpdate(req.session.user._id, req.body)
   res.redirect('/@me')
 })
