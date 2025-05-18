@@ -1,11 +1,8 @@
 const express = require('express')
 const router = express.Router()
-const bcrypt = require('bcrypt')
 const protected = require('../middleware/protected')
 const Product = require('../models/product')
 const User = require('../models/user')
-const Category = require('../models/category')
-const session = require('express-session')
 
 router.get('/', async (req, res) => {
   const allProducts = await Product.find()
@@ -32,14 +29,23 @@ router.get('/:productId', async (req, res) => {
   }
 })
 
-router.get('/:productId/edit', async (req, res) => {
+router.get('/:productId/edit', protected, async (req, res) => {
   const foundProduct = await Product.findById(req.params.productId)
-  res.render('products/edit.ejs', { product: foundProduct })
+  if (foundProduct.userId.toString() === req.session.user._id) {
+    res.render('products/edit.ejs', { product: foundProduct })
+  } else {
+    res.redirect('/products')
+  }
 })
 
-router.put('/:productId', async (req, res) => {
-  await Product.findByIdAndUpdate(req.params.productId, req.body)
+router.put('/:productId', protected, async (req, res) => {
+  const foundProduct = await Product.findById(req.params.productId)
+  if (foundProduct.userId.toString() === req.session.user._id) {
+  await foundProduct.updateOne(req.body)
   res.redirect(`/products/${req.params.productId}`)
+  } else {
+    res.redirect('/products')
+  }
 })
 
 module.exports = router

@@ -11,7 +11,10 @@
     <div class="product-quantity"><%= product.quantity %></div>
     <div class="product-desription"><%= product.shortDesc %></div>
     <% if (user) { %>
+    <% if (user.id === product.userId) { %>
     <a href="/products/<%= product._id %>/edit">Edit Product</a>
     <%}%>
+    <%}%>
+
   </body>
 </html>
