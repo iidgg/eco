@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>eco New Product</title>
+  </head>
+  <body>
+    <form action="/products/new" method="POST">
+      <label for="title">Product Title:</label>
+      <input type="text" name="title" id="title" />
+      <br />
+      <label for="shortDesc">Short Description</label>
+      <textarea name="shortDesc" id="shortDesc"></textarea>
+      <br />
+      <label for="quantity">Quantity</label>
+      <input type="number" name="quantity" id="quiantity" />
+      <br />
+      <label for="price">Price:</label>
+      <input type="number" name="price" id="price" />
+      <br />
+      <!-- <label for="pictures">Pictures:</label>
+      <input type="text" name="" id=""> -->
+
+      <button type="submit">Add Product</button>
+    </form>
+  </body>
+</html>
