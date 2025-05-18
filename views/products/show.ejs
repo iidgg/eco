@@ -28,5 +28,14 @@
       </form>
     <%}%>
     <%}%>
+    <h3>Reviews</h3>
+    <% reviews.forEach(review => { %>
+      <div class="review-card">
+      <div class="review-title"><strong><%= review.title %></strong></div>
+      <div class="review-description"><%= review.review %></div>
+      <div class="review-rating">Rating: <%= review.rating %>/10</div>
+      </div>
+    <% }) %>
+
   </body>
 </html>
