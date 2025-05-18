@@ -7,6 +7,7 @@ if (!process.env.SESSION_SECRET) {
 const mongoose = require('mongoose')
 const express = require('express')
 const session = require('express-session')
+const MongoStore = require('connect-mongo')
 
 const app = express()
 
@@ -17,7 +18,8 @@ app.use(
   session({
     secret: process.env.SESSION_SECRET,
     resave: false,
-    saveUninitialized: true
+    saveUninitialized: true,
+    store: MongoStore.create({ mongoUrl: process.env.MONGODB_URI })
   })
 )
 
