@@ -1,5 +1,5 @@
 const router = require('express').Router()
-const upload = require('multer')({ dest: 'uploads/avt/' })
+const upload = require('multer')({ dest: 'uploads/avatars/' })
 
 const protected = require('../middleware/protected')
 const User = require('../models/user')
