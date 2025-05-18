@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>eco Products</title>
+  </head>
+  <body>
+    <h2>Products</h2>
+    <% products.forEach( product => { %>
+    <div class="product">
+      <div class="product-title">
+        <a href="/products/<%= product.id %>"><%= product.title %></a>
+      </div>
+      <div class="product-price"><%= product.price %></div>
+      <div class="product-quantity"><%= product.quantity %></div>
+      <div class="product-description"><%= product.shortDesc %></div>
+    </div>
+    <% }) %>
+  </body>
+</html>
