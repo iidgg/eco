@@ -3,6 +3,7 @@ const router = express.Router()
 const protected = require('../middleware/protected')
 const Product = require('../models/product')
 const User = require('../models/user')
+const Review = require('../models/review')
 
 router.get('/', async (req, res) => {
   const allProducts = await Product.find()
@@ -21,11 +22,12 @@ router.post('/new', protected, async (req, res) => {
 
 router.get('/:productId', async (req, res) => {
   const foundProduct = await Product.findById(req.params.productId)
+  const foundReviews = await Review.find({product_id: req.params.productId})
   if (req.session.user) {
     const foundUser = await User.findById(req.session.user._id)
-    res.render('products/show.ejs', { product: foundProduct, user: foundUser })
+    res.render('products/show.ejs', { product: foundProduct, user: foundUser, reviews: foundReviews })
   } else {
-    res.render('products/show.ejs', { product: foundProduct, user: null })
+    res.render('products/show.ejs', { product: foundProduct, user: null, reviews: foundReviews })
   }
 })
 

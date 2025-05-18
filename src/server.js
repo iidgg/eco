@@ -46,7 +46,7 @@ app.use((req, res, next) => {
 app.use('/auth', require('./controllers/auth.js'))
 app.use('/@me', require('./controllers/@me.js'))
 app.use('/products', require('./controllers/products.js'))
-
+app.use('/reviews', require('./controllers/reviews.js'))
 app.get('/', (req, res) => {
   res.render('home.ejs')
 })
