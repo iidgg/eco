@@ -50,4 +50,11 @@ router.put('/:productId', protected, async (req, res) => {
   }
 })
 
+router.delete('/:productId', protected, async (req, res) => {
+  await Product.findByIdAndDelete(req.params.productId)
+  await Review.deleteMany({product_id: req.params.productId})
+  res.redirect('/products')
+})
+
+
 module.exports = router
