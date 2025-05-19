@@ -22,7 +22,7 @@ router.post('/new', protected, async (req, res) => {
 
 router.get('/:productId', async (req, res) => {
   const foundProduct = await Product.findById(req.params.productId)
-  const foundReviews = await Review.find({product_id: req.params.productId})
+  const foundReviews = await Review.find({productId: req.params.productId})
   if (req.session.user) {
     const foundUser = await User.findById(req.session.user._id)
     res.render('products/show.ejs', { product: foundProduct, user: foundUser, reviews: foundReviews })
@@ -52,7 +52,7 @@ router.put('/:productId', protected, async (req, res) => {
 
 router.delete('/:productId', protected, async (req, res) => {
   await Product.findByIdAndDelete(req.params.productId)
-  await Review.deleteMany({product_id: req.params.productId})
+  await Review.deleteMany({productId: req.params.productId})
   res.redirect('/products')
 })
 
