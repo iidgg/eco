@@ -10,8 +10,8 @@ router.use(protected)
 router.get('/', async (req, res) => {
   const user = await User.findById(req.session.user._id)
   res.render('@me.ejs', {
-    first_name: user.first_name,
-    last_name: user.last_name,
+    firstName: user.firstName,
+    lastName: user.lastName,
     username: user.username,
     email: user.email,
     tel: user.tel,
