@@ -1,38 +1,43 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>eco New Product</title>
-  </head>
-  <body>
-    <form action="/products/<%= product.id %>?_method=PUT" method="POST">
-      <label for="title">Product Title:</label>
-      <input type="text" name="title" id="title" value="<%= product.title %>" />
-      <br />
-      <label for="shortDesc">Short Description</label>
-      <textarea name="shortDesc" id="shortDesc"><%= product.shortDesc %></textarea>
-      <br />
-      <label for="quantity">Quantity</label>
-      <input
-        type="number"
-        name="quantity"
-        id="quiantity"
-        value="<%= product.quantity %>"
-      />
-      <br />
-      <label for="price">Price:</label>
-      <input
-        type="number"
-        name="price"
-        id="price"
-        value="<%= product.price %>"
-      />
-      <br />
-      <!-- <label for="pictures">Pictures:</label>
-      <input type="text" name="" id=""> -->
 
-      <button type="submit">Edit Product</button>
-    </form>
-  </body>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>eco New Product</title>
+</head>
+
+<body>
+  <form action="/products/<%= product.id %>?_method=PUT" method="POST" enctype="multipart/form-data">
+    <label for="title">Product Title:</label>
+    <input type="text" name="title" id="title" value="<%= product.title %>" />
+    <br />
+
+    <label for="shortDesc">Short Description</label>
+    <textarea name="shortDesc" id="shortDesc"><%= product.shortDesc %></textarea>
+    <br />
+
+    <label for="quantity">Quantity</label>
+    <input type="number" name="quantity" id="quiantity" value="<%= product.quantity %>" />
+    <br />
+
+    <label for="price">Price:</label>
+    <input type="number" name="price" id="price" value="<%= product.price %>" />
+    <br />
+
+    <label for="pictures">Pictures:</label>
+    <input type="file" name="pictures" id="pictures" multiple />
+
+    <button type="submit">Edit Product</button>
+  </form>
+
+  <% product.pictures.forEach((picture) => { %>
+  <form action="/products/<%= product.id %>/<%= picture %>?_method=DELETE" method="POST">
+    <img src="/static/products/<%= product.id %>/<%= picture %>">
+    <button type="submit">delete</button>
+  </form>
+  <br>
+  <% }) %>
+</body>
+
 </html>

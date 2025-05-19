@@ -16,6 +16,7 @@ app.set('view engine', 'ejs')
 app.use(ejsLayouts)
 
 app.use('/static/avatars', express.static('uploads/avatars/'))
+app.use('/static/products', express.static('uploads/products/'))
 app.use('/assets', express.static('assets'))
 
 app.use(require('method-override')('_method'))
