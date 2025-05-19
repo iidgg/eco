@@ -11,7 +11,7 @@ const updateSession = async (req, data) => {
       _id: user._id || session.user._id,
       avatar: user.avatar || session.user.avatar,
       username: user.username || session.user.username,
-      firstName: user.first_name || session.user.firstName
+      firstName: user.firstName || session.user.firstName
     }
   }
 

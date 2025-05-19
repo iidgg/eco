@@ -4,8 +4,8 @@ const schema = new mongoose.Schema({
   email: { type: String, required: true },
   password: { type: String, required: true },
 
-  first_name: { type: String, required: true },
-  last_name: { type: String, required: false },
+  firstName: { type: String, required: true },
+  lastName: { type: String, required: false },
 
   about: String,
   tel: String,
