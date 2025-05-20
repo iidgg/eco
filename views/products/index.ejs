@@ -5,7 +5,7 @@
   <h2>Products</h2>
   <% products.forEach( product => { %>
     <div class="product">
-      <img src="/static/products/<%= product._id %>/<%= product.pictures[0] %>" alt="<% product.title %>" onerror="this.onerror=null; this.src='/assets/default_product.jpg';">
+      <img src="/static/products/<%= product._id %>/<%= product.pictures[0] %>" alt="<%= product.title %>" onerror="this.onerror=null; this.src='/assets/default_product.jpg';">
       <div class="product-head">
 
         <h2 class="product-title">
