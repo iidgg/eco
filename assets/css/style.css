@@ -1,3 +1,13 @@
+:root {
+  --primary-theme-color: #13b887;
+  --primary-dark-color: #2A7860;
+  --secondary-theme-color: #63372B;
+  --secondary-dark-theme-color: #223831;
+  --danger-color: #B83612;
+  --dark-color: #332A27;
+}
+
+
 * {
   font-family: cursive;
 }
