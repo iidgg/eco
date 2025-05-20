@@ -1,0 +1,40 @@
+.user-nav {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+nav img {
+  width: 120px;
+}
+
+input, button {
+  border: 2px black dashed;
+  border-radius: .4rem;
+}
+
+input:focus {
+  outline: none;
+}
+
+.signin-form {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  text-align: center;
+  width: 300px;
+  justify-self: center;
+  align-self: center;
+  margin-bottom: 0;
+}
+
+.signin-form input, .signin-form button {
+  height: 2rem;
+  height: 2rem;
+}
+
+.signin-form button {
+  width: 150px;
+  align-self: center;
+  background-color: rgb(255, 215, 163);
+}

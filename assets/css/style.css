@@ -1,5 +1,5 @@
 * {
-    font-family: cursive;
+  font-family: cursive;
 }
 
 a {
@@ -31,14 +31,4 @@ nav {
   border: 1px black solid;
   border-radius: 1rem 1rem 0 0;
   padding: 1rem;
-}
-
-.user-nav {
-  display: flex;
-  align-items: center;
-  gap: 1rem;
-}
-
-nav img {
-  width: 120px;
 }
