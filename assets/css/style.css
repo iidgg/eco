@@ -42,3 +42,7 @@ nav {
   border-radius: 1rem 1rem 0 0;
   padding: 1rem;
 }
+
+nav img {
+  width: 120px;
+}
