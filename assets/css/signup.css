@@ -1,0 +1,60 @@
+.user-nav {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+nav img {
+  width: 120px;
+}
+
+
+input, button {
+  border: 2px black dashed;
+  border-radius: .4rem;
+}
+
+input:focus {
+  outline: none;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  text-align: center;
+  justify-self: center;
+  align-self: center;
+  margin-bottom: 0;
+}
+
+fieldset {
+  padding: 0;
+  border: none;
+  display: grid;
+  grid-template-rows: 1fr 1fr;
+  grid-auto-flow: column;
+  column-gap: 1rem;
+}
+
+label {
+  text-align: left;
+}
+
+.commercial {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+input, button {
+  height: 2rem;
+  height: 2rem;
+}
+
+button {
+  width: 150px;
+  height: 40px;
+  align-self: center;
+  background-color: var(--primary-theme-color);
+}
