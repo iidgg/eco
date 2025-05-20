@@ -1,4 +1,5 @@
 <link rel="stylesheet" href="/assets/css/products/editProduct.css">
+<%- include('../partials/_navbar.ejs') %>
 <div class="product-images">
   <% product.pictures.forEach((picture) => { %>
     <form action="/products/<%= product.id %>/<%= picture %>?_method=DELETE" method="POST">
@@ -34,4 +35,8 @@
     <input type="file" name="pictures" id="pictures" multiple />
   </div>
     <button type="submit">Edit Product</button>
+</form>
+
+<form action="/products/<%= product._id %>?_method=DELETE" method="POST" class="delete-form">
+  <button type="submit" class="danger">Delete Product</button>
 </form>
