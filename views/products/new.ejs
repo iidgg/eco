@@ -1,28 +1,26 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>eco New Product</title>
-  </head>
-  <body>
-    <form action="/products/new" method="POST">
-      <label for="title">Product Title:</label>
-      <input type="text" name="title" id="title" />
-      <br />
-      <label for="shortDesc">Short Description</label>
-      <textarea name="shortDesc" id="shortDesc"></textarea>
-      <br />
+<link rel="stylesheet" href="/assets/css/products/new.css">
+<%- include('../partials/_navbar.ejs') %>
+<form action="/products/new" method="POST">
+  <div class="title">
+    <label for="title">Product Title</label>
+    <input type="text" name="title" id="title" />
+  </div>
+  
+  <div class="quantity-price">
+    <div class="quantity">
       <label for="quantity">Quantity</label>
       <input type="number" name="quantity" id="quiantity" />
-      <br />
-      <label for="price">Price:</label>
+    </div>
+    <div class="price">
+      <label for="price">Price</label>
       <input type="number" name="price" id="price" />
-      <br />
-      <!-- <label for="pictures">Pictures:</label>
-      <input type="text" name="" id=""> -->
+    </div>
+  </div>
 
-      <button type="submit">Add Product</button>
-    </form>
-  </body>
-</html>
+  <div class="shortDesc">
+    <label for="shortDesc">Short Description</label>
+    <textarea name="shortDesc" id="shortDesc"></textarea>
+  </div>
+  <div class="categories"></div>
+  <button type="submit">Add Product</button>
+</form>
