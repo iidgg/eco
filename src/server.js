@@ -9,6 +9,7 @@ const express = require('express')
 const session = require('express-session')
 const MongoStore = require('connect-mongo')
 const ejsLayouts = require('express-ejs-layouts')
+const { addCategories } = require('./utils.js')
 
 const app = express()
 
@@ -34,6 +35,8 @@ app.use(
 mongoose.connect(process.env.MONGODB_URI)
 mongoose.connection.on('connected', () => {
   console.log(`Connected to MongoDB ${mongoose.connection.name}.`)
+
+  addCategories()
 })
 
 app.use(require('morgan')('dev'))
