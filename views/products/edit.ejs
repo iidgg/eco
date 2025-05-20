@@ -1,43 +1,37 @@
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>eco New Product</title>
-</head>
-
-<body>
-  <form action="/products/<%= product.id %>?_method=PUT" method="POST" enctype="multipart/form-data">
-    <label for="title">Product Title:</label>
+<link rel="stylesheet" href="/assets/css/products/editProduct.css">
+<div class="product-images">
+  <% product.pictures.forEach((picture) => { %>
+    <form action="/products/<%= product.id %>/<%= picture %>?_method=DELETE" method="POST">
+      <img src="/static/products/<%= product.id %>/<%= picture %>">
+      <button type="submit">delete</button>
+    </form>
+    <br>
+    <% }) %>
+</div>
+<div class="categories"></div>
+<form action="/products/<%= product.id %>?_method=PUT" method="POST" enctype="multipart/form-data" class="edit-form">
+  <div class="title">
+    <label for="title">Product Title</label>
     <input type="text" name="title" id="title" value="<%= product.title %>" />
-    <br />
+  </div>
 
-    <label for="shortDesc">Short Description</label>
-    <textarea name="shortDesc" id="shortDesc"><%= product.shortDesc %></textarea>
-    <br />
-
+  <div class="quantity">
     <label for="quantity">Quantity</label>
     <input type="number" name="quantity" id="quiantity" value="<%= product.quantity %>" />
-    <br />
+  </div>
 
-    <label for="price">Price:</label>
+  <div class="price">
+    <label for="price">Price</label>
     <input type="number" name="price" id="price" value="<%= product.price %>" />
-    <br />
+  </div>
 
-    <label for="pictures">Pictures:</label>
+  <div class="shortDesc">
+    <label for="shortDesc">Short Description</label>
+    <textarea name="shortDesc" id="shortDesc"><%= product.shortDesc %></textarea>
+  </div>
+
+  <div class="pictures">
     <input type="file" name="pictures" id="pictures" multiple />
-
+  </div>
     <button type="submit">Edit Product</button>
-  </form>
-
-  <% product.pictures.forEach((picture) => { %>
-  <form action="/products/<%= product.id %>/<%= picture %>?_method=DELETE" method="POST">
-    <img src="/static/products/<%= product.id %>/<%= picture %>">
-    <button type="submit">delete</button>
-  </form>
-  <br>
-  <% }) %>
-</body>
-
-</html>
+</form>
