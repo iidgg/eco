@@ -38,7 +38,6 @@ nav {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  border: 1px black solid;
   border-radius: 1rem 1rem 0 0;
   padding: 1rem;
 }
@@ -50,4 +49,5 @@ nav img {
 .user-nav {
   display: flex;
   align-items: center;
+  gap: 1rem;
 }
