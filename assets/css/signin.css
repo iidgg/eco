@@ -17,7 +17,7 @@ input:focus {
   outline: none;
 }
 
-.signin-form {
+form {
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -28,13 +28,13 @@ input:focus {
   margin-bottom: 0;
 }
 
-.signin-form input, .signin-form button {
+input, button {
   height: 2rem;
   height: 2rem;
 }
 
-.signin-form button {
+button {
   width: 150px;
   align-self: center;
-  background-color: rgb(255, 215, 163);
+  background-color: var(--primary-theme-color);
 }
