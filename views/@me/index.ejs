@@ -1,38 +1,51 @@
+<link rel="stylesheet" href="/assets/css/@me/@me.css">
+<%- include('../partials/_authNav.ejs') %>
 <form action="/@me?_method=PUT" method="POST" enctype="multipart/form-data">
-  <label for="firstName">First Name:</label>
-  <input type="text" name="firstName" id="firstName" value="<%= firstName %>" />
-  <br />
-
-  <label for="lastName">Last Name:</label>
-  <input type="text" name="lastName" id="lastName" value="<%= lastName %>" />
-  <br />
-
-  <label for="username">Username:</label>
-  <input type="text" name="username" id="username" value="<%= username %>" disabled />
-  <br />
-
-  <label for="tel">telephone:</label>
-  <input type="tel" name="tel" id="tel" value="<%= tel %>" />
-  <br />
-
-  <label for="email">email:</label>
-  <input type="email" name="email" id="email" value="<%= email %>" />
-  <br />
-
-  <label for="about">about:</label>
-  <textarea name="about" id="about"><%= about %></textarea>
-  <br />
-
-  <input type="checkbox" name="commercial" id="commercial" <% if (commercial) { %> checked disabled <% } %> />
-  <label for="commercial">Are you a commercial user?</label>
-  <br />
-
-  <input type="file" name="avatar" />
-
+  
+  
   <% if (avatar) { %>
-  <h4>Current Avatar</h4>
-  <img src="/static/avatars/<%= avatar %>" alt="current avatar">
-  <% } %>
+    <div class="avatar-field">
+      <img src="/static/avatars/<%= avatar %>" alt="current avatar" class="avatar">
+      <% } %>
+      <input type="file" name="avatar" />
+    </div>
+    <div class="commercial">
+      <input type="checkbox" name="commercial" id="commercial" <% if (commercial) { %> checked disabled <% } %> />
+      <label for="commercial">Are you a commercial user?</label>
+  </div>
+
+  <fieldset class="user-field">
+    <div class="first-name">
+      <label for="firstName">First Name</label>
+      <input type="text" name="firstName" id="firstName" value="<%= firstName %>" />
+    </div>
+    <div class="last-name">
+      <label for="lastName">Last Name</label>
+      <input type="text" name="lastName" id="lastName" value="<%= lastName %>" />
+    </div>
+
+    <div class="username">
+      <label for="username">Username</label>
+      <input type="text" name="username" id="username" value="<%= username %>" disabled />
+    </div>
+  </fieldset>
+
+  <fieldset class="contacts">
+    <div class="tel">
+      <label for="tel">telephone</label>
+      <input type="tel" name="tel" id="tel" value="<%= tel %>" />
+    </div>
+    
+    <div class="email">
+      <label for="email">email</label>
+      <input type="email" name="email" id="email" value="<%= email %>" />
+    </div>
+  </fieldset>
+  <div class="about">
+    <label for="about">about</label>
+    <textarea name="about" id="about"><%= about %></textarea>
+  </div>
+
 
   <button type="submit">submit</button>
 </form>

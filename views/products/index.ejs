@@ -1,21 +1,19 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>eco Products</title>
-  </head>
-  <body>
-    <h2>Products</h2>
-    <% products.forEach( product => { %>
+<link rel="stylesheet" href="/assets/css/products/products.css">
+<%- include('../partials/_navbar.ejs') %>
+<div class="search"></div>
+<div class="products">
+  <h2>Products</h2>
+  <% products.forEach( product => { %>
     <div class="product">
-      <div class="product-title">
-        <a href="/products/<%= product.id %>"><%= product.title %></a>
+      <img src="/static/products/<%= product._id %>/<%= product.pictures[0] %>" alt="<%= product.title %>" onerror="this.onerror=null; this.src='/assets/default_product.jpg';">
+      <div class="product-head">
+
+        <h2 class="product-title">
+          <a href="/products/<%= product.id %>"><%= product.title %></a>
+        </h2>
+        <div class="product-price"><%= product.price %> BHD</div>
       </div>
-      <div class="product-price"><%= product.price %></div>
-      <div class="product-quantity"><%= product.quantity %></div>
       <div class="product-description"><%= product.shortDesc %></div>
     </div>
     <% }) %>
-  </body>
-</html>
+  </div>

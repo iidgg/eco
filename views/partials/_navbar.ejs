@@ -1,8 +1,11 @@
 <nav>
+  <a href="/">
+    <img src="/assets/logo.png" alt="logo" class="logo">
+  </a>
   <a class="user-nav" href="/@me">
     <% if (user) { %>
     <span>Hello, <%= user.firstName %></span>
-    <%- include('_avatar.ejs', { user, size: '6rem' }) %>
+    <%- include('_avatar.ejs', { user, size: '4rem' }) %>
     <% } else { %>
     <a href="/auth/signin">Sign in</a>
     <% } %>

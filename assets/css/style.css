@@ -1,3 +1,21 @@
+:root {
+  --primary-theme-color: #13b887;
+  --primary-dark-color: #2A7860;
+  --secondary-theme-color: #63372B;
+  --secondary-dark-theme-color: #223831;
+  --danger-color: #B83612;
+  --dark-color: #332A27;
+}
+
+
+* {
+  font-family: cursive;
+}
+
+a {
+  text-decoration: none;
+}
+
 body {
   background-color: antiquewhite;
 }
@@ -14,4 +32,22 @@ body {
   width: 100%;
   height: 100%;
   object-fit: cover;
+}
+
+nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-radius: 1rem 1rem 0 0;
+  padding: 1rem;
+}
+
+nav img {
+  width: 120px;
+}
+
+.user-nav {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
 }

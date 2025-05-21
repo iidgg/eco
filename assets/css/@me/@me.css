@@ -1,0 +1,56 @@
+form {
+  display: grid;
+  grid-template-columns: 2fr 3fr;
+  width: 60vw;
+  justify-self: center;
+
+}
+
+.commercial {
+  grid-row-start: 3;
+}
+
+.about, fieldset {
+  grid-column-start: 2;
+}
+
+fieldset {
+  border: none;
+}
+
+.avatar-field {
+  grid-row: 1/3;
+}
+
+.user-field, .contacts {
+  display: grid;
+  grid-auto-flow: column;
+  grid-gap: 1rem;
+}
+
+fieldset label, .about label {
+  display: block;
+}
+
+textarea {
+  width: 80%;
+  height: 100%;
+}
+
+button {
+  background-color: var(--primary-theme-color);
+  width: 160px;
+  height: 50px;
+  justify-self: center;
+}
+
+input:not([type="file"]), button, textarea {
+  border-radius: .4rem;
+  border: 1px black solid;
+}
+.contacts input {
+  width: 100%;
+}
+input {
+  height: 2rem;
+}
