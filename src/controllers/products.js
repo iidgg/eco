@@ -29,8 +29,12 @@ router.get('/new', protected, (req, res) => {
 router.get('/:productId', async (req, res) => {
   const foundProduct = await Product.findById(req.params.productId)
   const foundReviews = await Review.find({ productId: req.params.productId })
-  const foundUser = await User.findById(req.session.user._id)
-
+  const foundUser = null
+  try {
+    const foundUser = await User.findById(req.session.user._id)
+  } catch {
+  }
+    
   res.render('products/show.ejs', {
     product: foundProduct,
     user: foundUser,
