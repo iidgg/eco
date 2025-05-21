@@ -46,6 +46,22 @@ img {
   align-items: center;
 }
 
+
+.purchase-form {
+  display: flex;
+  justify-content: end;
+  align-items: center;
+  gap: 0;
+
+}
+
+.purchase-form button {
+  background-color: var(--primary-theme-color);
+  border-radius: .4rem;
+  border: 1px black solid;
+  margin-right: .3rem;
+}
+
 form {
   display: grid;
   grid-template-columns: 3fr 1fr;
