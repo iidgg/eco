@@ -18,17 +18,21 @@ const upload = multer({
 })
 
 router.get('/', async (req, res) => {
+  res.locals.title = 'Products'
   const allProducts = await Product.find()
   res.render('products/index.ejs', { products: allProducts })
 })
 
 router.get('/new', protected, (req, res) => {
+  res.locals.title = 'New Product'
   res.render('products/new.ejs')
 })
 
 router.get('/:productId', async (req, res) => {
+  const foundProduct = await Product.findById(req.params.productId)
+  res.locals.title = foundProduct.title
   res.render('products/show.ejs', {
-    product: await Product.findById(req.params.productId),
+    product: foundProduct,
     user: req.session.user ? await User.findById(req.session.user._id) : null,
     reviews: await Review.find({ productId: req.params.productId })
   })

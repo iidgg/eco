@@ -9,6 +9,7 @@ const { updateSession } = require('../utils')
 const protected = require('../middleware/protected.js')
 
 router.get('/signup', (req, res) => {
+  res.locals.title = 'Sign Up'
   res.render('auth/signup.ejs')
 })
 
@@ -29,6 +30,7 @@ router.post('/signup', async (req, res) => {
 })
 
 router.get('/signin', (req, res) => {
+  res.locals.title = 'Sign In'
   if (req.session.user) return res.redirect('/@me')
   res.render('auth/signin.ejs')
 })
