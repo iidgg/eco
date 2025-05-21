@@ -46,14 +46,22 @@ app.use((req, res, next) => {
   next()
 })
 
+// Models
+const Product = require('./models/product.js')
+const Review = require('./models/review.js')
+
 // Controllers
 app.use('/auth', require('./controllers/auth.js'))
 app.use('/@me', require('./controllers/@me.js'))
 app.use('/products', require('./controllers/products.js'))
 app.use('/reviews', require('./controllers/reviews.js'))
 app.use('/cart', require('./controllers/cart.js'))
-app.get('/', (req, res) => {
-  res.render('home.ejs')
+app.get('/', async (req, res) => {
+  res.render('home.ejs' , {
+    products: await Product.aggregate().sample(6),
+    reviews: await Review.aggregate().match({rating:10}).sample(5),
+    bestProduct: await Product.aggregate().sample(1)[0],
+  })
 })
 
 app.listen(process.env.PORT, (err) => {

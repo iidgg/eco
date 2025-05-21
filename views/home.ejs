@@ -1,2 +1,49 @@
+<link rel="stylesheet" href="/assets/css/home.css">
 <%- include('partials/_navbar.ejs') %>
-<h1>eco E-commerce</h1>
+
+<div class="explore">
+
+</div>
+
+<div class="products">
+  <% products.forEach( product => { %>
+    <a href="/products/<%= product._id %>">
+    <div class="product">
+      <img src="/static/products/<%= product._id %>/<%= product.pictures[0] %>" alt="<%= product.title %>" onerror="this.onerror=null; this.src='/assets/default_product.jpg';">
+      <div class="product-head">
+
+        <h2 class="product-title">
+          <%= product.title %>
+        </h2>
+        <div class="product-price"><%= product.price %> BHD</div>
+      </div>
+      <div class="product-description"><%= product.shortDesc %></div>
+    </div>
+  </a>
+    <% }) %>
+</div>
+
+<div class="best-product">
+  <a href="/products/<%= bestProduct.id %>">
+
+    <img src="/static/products/<%= bestProduct._id %>/<%= bestProduct.pictures[0] %>" alt="<%= bestProduct.title %>" onerror="this.onerror=null; this.src='/assets/default_product.jpg';">
+    <h2 class="bestProduct-title">
+      <%= bestProduct.title %>
+    </h2>
+    <div class="best-product-desc">
+      <%= bestProduct.shortDesc %>
+    </div>
+  </a>
+</div>
+
+<div class="reviews">
+  <% reviews.forEach(review => { %>
+    <div class="review-card">
+      <%= review.title %>
+      
+      Rating: <%= review.rating %>
+      <br/>
+      <a href="/products/<%= review.productId %>">View Product</a>
+    </div>
+  <% }) %>
+</div>
