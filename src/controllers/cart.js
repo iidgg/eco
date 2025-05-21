@@ -22,6 +22,13 @@ router.get('/', async (req, res) => {
     })
   )
 
+  res.locals.total = res.locals.cart.items
+    .map((item) => {
+      const currentPrice = res.locals.items[item.itemId].price
+      return item.quantity * currentPrice
+    })
+    .reduce((acc, v) => acc + v, 0)
+
   res.render('cart/index.ejs')
 })
 
