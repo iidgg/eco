@@ -11,6 +11,7 @@ router.use(protected)
 
 router.get('/', async (req, res) => {
   const user = await User.findById(req.session.user._id)
+  res.locals.title = `${user.username} profile`
   res.render('@me/index.ejs', {
     firstName: user.firstName,
     lastName: user.lastName,
