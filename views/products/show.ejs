@@ -1,66 +1,67 @@
 <link rel="stylesheet" href="/assets/css/products/show.css">
 <%- include('../partials/_navbar.ejs') %>
 <div class="product-pictures">
-
   <img src="/static/products/<%= product._id %>/<%= product.pictures[0] %>" alt="<%= product.title %>" onerror="this.onerror=null; this.src='/assets/default_product.jpg';" class="primary-img">
   <div class="secondary-images">
-  <% product.pictures.forEach((picture, i) => { %>
+    <% product.pictures.forEach((picture, i) => { %>
     <% if ( i > 0) { %>
-      <img src="/static/products/<%= product._id %>/<%= product.pictures[i] %>" alt="<%= product.title %>-<%= i %>">
-      <% } %>
-      <% }) %>
-    </div>
+    <img src="/static/products/<%= product._id %>/<%= product.pictures[i] %>" alt="<%= product.title %>-<%= i %>">
+    <% } %>
+    <% }) %>
+  </div>
 </div>
 <div class="product">
   <div class="product-info">
 
     <div class="product-head">
       <h2><%= product.title %></h2>
-    <div class="price-quantity">
+      <div class="price-quantity">
 
-      <div class="product-price">BHD <%= product.price %></div>
-      <div class="product-quantity"><%= product.quantity %> Available</div>
-  </div>
-  </div>
-  <div class="product-desription"><%= product.shortDesc %></div>
-  <% if (user) { %>
+        <form action="/cart?pid=<%= product.id %>&_method=PUT" method="POST">
+          <button class="product-price">BHD <%= product.price %></button>
+          <div class="product-quantity"><%= product.quantity %> Available</div>
+        </form>
+      </div>
+    </div>
+    <div class="product-desription"><%= product.shortDesc %></div>
+    <% if (user) { %>
     <% if (user.id.toString() === product.userId.toString()) { %>
-      <a href="/products/<%= product._id %>/edit">Edit Product</a>
-      <form action="/products/<%= product._id %>?_method=DELETE" method="POST">
-        <button type="submit">Delete Product</button>
-      </form>
-      <%} %>
-      <%}%>
+    <a href="/products/<%= product._id %>/edit">Edit Product</a>
+    <form action="/products/<%= product._id %>?_method=DELETE" method="POST">
+      <button type="submit">Delete Product</button>
+    </form>
+    <%} %>
+    <%}%>
   </div>
   <div class="reviews">
 
     <h3>Reviews</h3>
     <% if (user) { %>
 
-      <% if (!(user.id.toString() === product.userId.toString())) {%>
-        <form action="/reviews/<%= product.id %>" method="POST">
-          <div class="title">
-            <label for="title">Title</label>
-            <input type="text" name="title" id="title" required>
-          </div>
-        <div class="rating">
-          <label for="rating">Rating</label>
-          <input type="number" min="0" max="10" step="1" name="rating" id="rating" required>
-        </div>
-        <div class="review">
-          <label for="review">Review</label>
-          <textarea name="review" id="review" required></textarea>
-        </div>
-    <button type="submit">Add Review</button>
-  </form>
+<% if (!(user.id.toString() === product.userId.toString())) {%>
+    <form action="/reviews/<%= product.id %>" method="POST">
+      <div class="title">
+        <label for="title">Title</label>
+        <input type="text" name="title" id="title" required>
+      </div>
+      <div class="rating">
+        <label for="rating">Rating</label>
+        <input type="number" min="0" max="10" step="1" name="rating" id="rating" required>
+      </div>
+      <div class="review">
+        <label for="review">Review</label>
+        <textarea name="review" id="review" required></textarea>
+      </div>
+      <button type="submit">Add Review</button>
+    </form>
+    <%}%>
   <%}%>
-  <%}%>
-  <% reviews.forEach(review => { %>
-  <div class="review-card">
-    <div class="review-title"><strong><%= review.title %></strong></div>
-    <div class="review-rating">Rating: <%= review.rating %>/10</div>
-  <div class="review-description"><%= review.review %></div>
-</div>
-<% }) %>
-</div>
+    <% reviews.forEach(review => { %>
+    <div class="review-card">
+      <div class="review-title"><strong><%= review.title %></strong></div>
+      <div class="review-rating">Rating: <%= review.rating %>/10</div>
+      <div class="review-description"><%= review.review %></div>
+    </div>
+    <% }) %>
+  </div>
 </div>

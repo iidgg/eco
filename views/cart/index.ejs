@@ -1,0 +1,14 @@
+<ul>
+  <% cart.items.forEach((item) => { %>
+  <li>
+    <img src="/static/products/<%= item.itemId %>/<%= items[item.itemId].pictures[0] %>" onerror="this.onerror=null; this.src='/assets/default_product.jpg';">
+    <p><%= items[item.itemId].title %></p>
+    <p><%= items[item.itemId].shortDesc %></p>
+    <p><%= item.quantity %></p>
+  </li>
+  <% }) %>
+
+  <form action="/cart/checkout" method="POST">
+    <button>checkout</button>
+  </form>
+</ul>

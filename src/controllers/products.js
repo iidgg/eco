@@ -27,18 +27,10 @@ router.get('/new', protected, (req, res) => {
 })
 
 router.get('/:productId', async (req, res) => {
-  const foundProduct = await Product.findById(req.params.productId)
-  const foundReviews = await Review.find({ productId: req.params.productId })
-  const foundUser = null
-  try {
-    const foundUser = await User.findById(req.session.user._id)
-  } catch {
-  }
-    
   res.render('products/show.ejs', {
-    product: foundProduct,
-    user: foundUser,
-    reviews: foundReviews
+    product: await Product.findById(req.params.productId),
+    user: req.session.user ? await User.findById(req.session.user._id) : null,
+    reviews: await Review.find({ productId: req.params.productId })
   })
 })
 
@@ -51,7 +43,6 @@ const ownsProduct = async (req, res, next) => {
   req.product = product
   next()
 }
-
 
 router.post('/new', async (req, res) => {
   req.body.userId = req.session.user._id

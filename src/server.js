@@ -55,15 +55,12 @@ app.use('/auth', require('./controllers/auth.js'))
 app.use('/@me', require('./controllers/@me.js'))
 app.use('/products', require('./controllers/products.js'))
 app.use('/reviews', require('./controllers/reviews.js'))
+app.use('/cart', require('./controllers/cart.js'))
 app.get('/', async (req, res) => {
-  const randomProducts = await Product.aggregate().sample(6)
-  const randomReviews = await Review.aggregate().match({rating:10}).sample(5)
-  const bestProduct = await Product.aggregate().sample(1)
-  console.log(bestProduct)
   res.render('home.ejs' , {
-    products: randomProducts,
-    reviews: randomReviews,
-    bestProduct: bestProduct[0],
+    products: await Product.aggregate().sample(6),
+    reviews: await Review.aggregate().match({rating:10}).sample(5),
+    bestProduct: await Product.aggregate().sample(1)[0],
   })
 })
 

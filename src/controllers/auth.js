@@ -26,10 +26,12 @@ router.post('/signup', async (req, res) => {
 })
 
 router.get('/signin', (req, res) => {
+  if (req.session.user) return res.redirect('/@me')
   res.render('auth/signin.ejs')
 })
 
 router.post('/signin', async (req, res) => {
+  if (req.session.user) res.session.destroy()
   let userInDatabase
   if (validator.isEmail(req.body.usernameOrEmail)) {
     userInDatabase = await User.findOne({ email: req.body.usernameOrEmail })
@@ -53,8 +55,8 @@ router.post('/signin', async (req, res) => {
 })
 
 router.get('/signout', (req, res) => {
-    req.session.destroy()
-    res.redirect('/')
+  req.session.destroy()
+  res.redirect('/')
 })
 
 module.exports = router
