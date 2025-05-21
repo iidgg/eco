@@ -1,44 +1,50 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>eco <%= product.title %></title>
-  </head>
-  <body>
-    <h2><%= product.title %></h2>
-    <div class="product-price"><%= product.price %></div>
-    <div class="product-quantity"><%= product.quantity %></div>
-    <div class="product-desription"><%= product.shortDesc %></div>
-    <% if (user) { %>
-    <% if (user.id.toString() === product.userId.toString()) { %>
-    <a href="/products/<%= product._id %>/edit">Edit Product</a>
-    <form action="/products/<%= product._id %>?_method=DELETE" method="POST">
-      <button type="submit">Delete Product</button>
-    </form>
-    <%} else {%>
-      <form action="/reviews/<%= product.id %>" method="POST">
-        <label for="title">Title:</label>
-        <input type="text" name="title" id="title" required>
-        <br>
-        <label for="review">Review:</label>
-        <textarea name="review" id="review" required></textarea>
-        <br>
-        <label for="rating">Rating:</label>
-        <input type="number" min="0" max="10" step="1" name="rating" id="rating" required>
-        <br>
-        <button type="submit">Add Review</button>
-      </form>
-    <%}%>
-    <%}%>
-    <h3>Reviews</h3>
-    <% reviews.forEach(review => { %>
-      <div class="review-card">
-      <div class="review-title"><strong><%= review.title %></strong></div>
-      <div class="review-description"><%= review.review %></div>
-      <div class="review-rating">Rating: <%= review.rating %>/10</div>
-      </div>
-    <% }) %>
 
-  </body>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>eco <%= product.title %></title>
+</head>
+
+<body>
+  <h2><%= product.title %></h2>
+  <div class="product-price"><%= product.price %></div>
+  <div class="product-quantity"><%= product.quantity %></div>
+  <div class="product-desription"><%= product.shortDesc %></div>
+  <% if (user) { %>
+  <% if (user.id.toString() === product.userId.toString()) { %>
+  <a href="/products/<%= product._id %>/edit">Edit Product</a>
+  <form action="/products/<%= product._id %>?_method=DELETE" method="POST">
+    <button type="submit">Delete Product</button>
+  </form>
+  <%} else {%>
+  <form action="/reviews/<%= product.id %>" method="POST">
+    <label for="title">Title:</label>
+    <input type="text" name="title" id="title" required>
+    <br>
+    <label for="review">Review:</label>
+    <textarea name="review" id="review" required></textarea>
+    <br>
+    <label for="rating">Rating:</label>
+    <input type="number" min="0" max="10" step="1" name="rating" id="rating" required>
+    <br>
+    <button type="submit">Add Review</button>
+  </form>
+  <%}%>
+  <%}%>
+  <form action="/cart?pid=<%= product.id %>&_method=PUT" method="POST">
+    <button type="submit">Add to cart</button>
+  </form>
+  <h3>Reviews</h3>
+  <% reviews.forEach(review => { %>
+  <div class="review-card">
+    <div class="review-title"><strong><%= review.title %></strong></div>
+    <div class="review-description"><%= review.review %></div>
+    <div class="review-rating">Rating: <%= review.rating %>/10</div>
+  </div>
+  <% }) %>
+
+</body>
+
 </html>
