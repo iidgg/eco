@@ -73,6 +73,9 @@ router.delete('/:productId', ownsProduct, async (req, res) => {
 })
 
 router.delete('/:productId/:pictureId', ownsProduct, async (req, res) => {
+  await fsPromise
+    .unlink(`uploads/products/${req.params.productId}/${req.params.pictureId}`)
+    .catch(() => null)
   const pictureIndex = req.product.pictures.indexOf(req.params.pictureId)
   req.product.pictures.splice(pictureIndex, 1)
   await req.product.save()

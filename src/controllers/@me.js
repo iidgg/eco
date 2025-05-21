@@ -1,5 +1,6 @@
 const router = require('express').Router()
 const upload = require('multer')({ dest: 'uploads/avatars/' })
+const fsPromise = require('fs/promises')
 
 const protected = require('../middleware/protected')
 const User = require('../models/user')
@@ -31,7 +32,13 @@ router.get('/orders', async (req, res) => {
 
 router.put('/', upload.single('avatar'), async (req, res) => {
   const updated = req.body
-  if (req.file) updated.avatar = req.file.filename
+  if (req.file) {
+    updated.avatar = req.file.filename
+    if (req.session.user.avatar)
+      await fsPromise
+        .unlink(`uploads/avatars/${req.session.user.avatar}`)
+        .catch(() => null)
+  }
 
   await User.findByIdAndUpdate(req.session.user._id, updated)
   await updateSession(req, { user: updated })
