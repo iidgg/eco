@@ -14,6 +14,7 @@ router.use(async (req, res, next) => {
 })
 
 router.get('/', async (req, res) => {
+  res.locals.title = 'Cart'
   res.locals.items = {}
   await Promise.all(
     req.cart.items.map(async (item) => {
