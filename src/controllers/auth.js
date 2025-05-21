@@ -5,6 +5,9 @@ const validator = require('validator')
 const User = require('../models/user')
 const { updateSession } = require('../utils')
 
+
+const protected = require('../middleware/protected.js')
+
 router.get('/signup', (req, res) => {
   res.render('auth/signup.ejs')
 })
@@ -52,6 +55,24 @@ router.post('/signin', async (req, res) => {
   }
 
   res.redirect('/')
+})
+
+router.get('/password', protected, async (req , res) => {
+  res.render('auth/password.ejs')
+})
+
+router.put('/password', protected, async (req, res) => {
+  const sessionUser = req.session.user
+  const userInDatabase = await User.findById(sessionUser._id)
+  if (!bcrypt.compareSync(req.body.currentPassword, userInDatabase.password)) { 
+    return res.redirect('/auth/password')
+  }
+  if (!(req.body.newPassword === req.body.confirmNewPassword)) {
+    return res.redirect('/auth/password')
+  }
+  const hashedPassword = bcrypt.hashSync(req.body.newPassword, 10)
+  await userInDatabase.updateOne({password: hashedPassword})
+  res.redirect('/@me')
 })
 
 router.get('/signout', (req, res) => {
