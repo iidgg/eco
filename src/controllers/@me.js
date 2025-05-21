@@ -31,7 +31,7 @@ router.get('/orders', async (req, res) => {
 
 router.put('/', upload.single('avatar'), async (req, res) => {
   const updated = req.body
-  updated.avatar = req.file.filename
+  if (req.file) updated.avatar = req.file.filename
 
   await User.findByIdAndUpdate(req.session.user._id, updated)
   await updateSession(req, { user: updated })
