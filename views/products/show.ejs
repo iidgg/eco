@@ -16,8 +16,7 @@
     <div class="product-head">
       <h2><%= product.title %></h2>
       <div class="price-quantity">
-
-        <form action="/cart?pid=<%= product.id %>&_method=PUT" method="POST">
+        <form action="/cart?pid=<%= product.id %>&_method=PUT" method="POST" class="purchase-form">
           <button class="product-price">BHD <%= product.price %></button>
           <div class="product-quantity"><%= product.quantity %> Available</div>
         </form>

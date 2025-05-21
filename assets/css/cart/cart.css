@@ -1,0 +1,29 @@
+.product {
+  display: grid;
+  grid-template-columns: 1fr 4fr;
+  grid-template-rows: 1fr 5fr;
+  grid-column-gap: 2rem;
+  height: 250px;
+  width: 550px;
+  margin-bottom: 2rem;
+}
+
+.product img {
+  border-radius: 1rem;
+  max-height: 200px;
+  max-width: 200px;
+  height: auto;
+  width: auto;
+}
+
+.product-price {
+  color: var(--primary-theme-color);
+}
+
+button {
+  background-color: var(--primary-theme-color);
+  border-radius: .4rem;
+  outline: none;
+  height: 2rem;
+  width: 7rem;
+}
