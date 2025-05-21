@@ -4,7 +4,7 @@
   <% product.pictures.forEach((picture) => { %>
     <form action="/products/<%= product.id %>/<%= picture %>?_method=DELETE" method="POST">
       <img src="/static/products/<%= product.id %>/<%= picture %>">
-      <button type="submit">delete</button>
+      <button type="submit" class="danger">delete</button>
     </form>
     <br>
     <% }) %>
@@ -29,6 +29,11 @@
   <div class="shortDesc">
     <label for="shortDesc">Short Description</label>
     <textarea name="shortDesc" id="shortDesc"><%= product.shortDesc %></textarea>
+  </div>
+
+  <div class="desc">
+    <label for="desc">Description</label>
+    <textarea name="desc" id="desc"><%= product.desc %></textarea>
   </div>
 
   <div class="pictures">

@@ -22,7 +22,7 @@
         </form>
       </div>
     </div>
-    <div class="product-desription"><%= product.shortDesc %></div>
+    <div class="product-desription"><%= product.desc %></div>
     <% if (user) { %>
     <% if (user.id.toString() === product.userId.toString()) { %>
     <a href="/products/<%= product._id %>/edit">Edit Product</a>
